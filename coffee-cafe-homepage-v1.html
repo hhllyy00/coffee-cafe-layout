@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Cafe — Homepage Layout v1</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233E2723'/%3E%3Ctext x='32' y='46' font-size='38' font-family='Georgia,serif' text-anchor='middle' fill='%23D4A574'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:wght@400;600;700;900&family=Lato:wght@300;400;700;900&display=swap">
+<style>
+/* ===== 配色方案 / Color Scheme =====
+   Primary (Deep Coffee):   #3E2723
+   Secondary (Warm Cream):  #F5E6D3
+   Accent (Caramel):        #D4A574
+   Text Dark:               #2C2C2C
+   Text Light:              #FAF6F0
+   Background (Cream):      #FAF6F0
+   Muted Brown:             #8D6E63
+*/
+
+/* ===== 字体方案 / Font Scheme =====
+   Headings: Playfair Display (serif, elegant, cafe vibe)
+   Body:     Lato (sans-serif, clean, readable)
+*/
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+  background: #FAF6F0;
+  color: #2C2C2C;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  color: #3E2723;
+  line-height: 1.2;
+}
+
+/* ===== Layout: Jello (centered, max-width) ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: #3E2723;
+  padding: 18px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(62,39,35,0.15);
+}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #F5E6D3;
+  letter-spacing: 0.5px;
+}
+.logo span { color: #D4A574; }
+.nav {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav a {
+  color: #F5E6D3;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  transition: color 0.3s;
+}
+.nav a:hover { color: #D4A574; }
+.nav a.active { color: #D4A574; font-weight: 700; }
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #F5E6D3;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #3E2723 0%, #5D4037 60%, #6D4C41 100%);
+  color: #FAF6F0;
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(212,165,116,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-size: 56px;
+  font-weight: 900;
+  color: #FAF6F0;
+  margin-bottom: 20px;
+  position: relative;
+}
+.hero h1 em {
+  font-style: italic;
+  color: #D4A574;
+}
+.hero p {
+  font-size: 20px;
+  font-weight: 300;
+  max-width: 600px;
+  margin: 0 auto 36px;
+  color: #F5E6D3;
+  position: relative;
+}
+.hero-btn {
+  display: inline-block;
+  background: #D4A574;
+  color: #3E2723;
+  padding: 14px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+  position: relative;
+}
+.hero-btn:hover {
+  background: #F5E6D3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212,165,116,0.4);
+}
+
+/* ===== SECTION COMMON ===== */
+.section {
+  padding: 80px 0;
+}
+.section-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.section-subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: #8D6E63;
+  margin-bottom: 56px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.divider {
+  width: 60px;
+  height: 3px;
+  background: #D4A574;
+  margin: 0 auto 48px;
+}
+
+/* ===== FEATURED MENU ===== */
+.featured-menu {
+  background: #FAF6F0;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.menu-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(62,39,35,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.menu-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(62,39,35,0.15);
+}
+.menu-img {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-img svg { width: 72px; height: 72px; opacity: 0.9; }
+.menu-img.espresso { background: linear-gradient(135deg, #3E2723, #5D4037); }
+.menu-img.latte { background: linear-gradient(135deg, #D4A574, #BCAAA4); }
+.menu-img.croissant { background: linear-gradient(135deg, #F5E6D3, #EFEBE9); }
+.menu-body {
+  padding: 24px;
+}
+.menu-body h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.menu-body p {
+  font-size: 14px;
+  color: #8D6E63;
+  margin-bottom: 16px;
+}
+.menu-price {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #D4A574;
+}
+.menu-link {
+  text-align: center;
+  margin-top: 48px;
+}
+.menu-link a {
+  color: #3E2723;
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 2px solid #D4A574;
+  padding-bottom: 4px;
+  transition: color 0.3s;
+}
+.menu-link a:hover { color: #D4A574; }
+
+/* ===== ABOUT ===== */
+.about {
+  background: #F5E6D3;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.about-img {
+  height: 380px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #8D6E63, #5D4037);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5E6D3;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+  box-shadow: 0 8px 30px rgba(62,39,35,0.2);
+}
+.about-text h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.about-text p {
+  font-size: 16px;
+  color: #5D4037;
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+.about-features {
+  list-style: none;
+  margin-top: 24px;
+}
+.about-features li {
+  padding: 8px 0;
+  font-size: 15px;
+  color: #3E2723;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.about-features li::before {
+  content: '';
+  width: 8px; height: 8px;
+  background: #D4A574;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ===== VISIT US ===== */
+.visit-us {
+  background: #FAF6F0;
+}
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.visit-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(62,39,35,0.08);
+}
+.visit-card h3 {
+  font-size: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #F5E6D3;
+}
+.info-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+.info-icon {
+  width: 40px; height: 40px;
+  background: #F5E6D3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #3E2723;
+}
+.info-icon svg { width: 18px; height: 18px; }
+.info-content h4 {
+  font-size: 15px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  color: #3E2723;
+  margin-bottom: 4px;
+}
+.info-content p {
+  font-size: 14px;
+  color: #8D6E63;
+  line-height: 1.5;
+}
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.hours-table td {
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #F5E6D3;
+}
+.hours-table td:first-child {
+  color: #3E2723;
+  font-weight: 700;
+  width: 45%;
+}
+.hours-table td:last-child {
+  color: #8D6E63;
+  text-align: right;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #3E2723;
+  color: #F5E6D3;
+  padding: 60px 0 24px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.footer-brand h3 {
+  color: #F5E6D3;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.footer-brand h3 span { color: #D4A574; }
+.footer-brand p {
+  font-size: 14px;
+  color: #BCAAA4;
+  line-height: 1.7;
+}
+.footer-col h4 {
+  color: #D4A574;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.footer-col ul {
+  list-style: none;
+}
+.footer-col li {
+  margin-bottom: 10px;
+}
+.footer-col a {
+  color: #BCAAA4;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+.footer-col a:hover { color: #D4A574; }
+.footer-bottom {
+  border-top: 1px solid #5D4037;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: #8D6E63;
+}
+
+/* ===== DESIGN NOTES PANEL (for assignment review) ===== */
+.notes-panel {
+  background: #2C2C2C;
+  color: #E0E0E0;
+  padding: 48px 0;
+  font-size: 14px;
+}
+.notes-panel h2 {
+  color: #D4A574;
+  font-size: 28px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.note-card {
+  background: #3A3A3A;
+  border-radius: 8px;
+  padding: 24px;
+  border-left: 4px solid #D4A574;
+}
+.note-card h3 {
+  color: #F5E6D3;
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+.note-card p, .note-card li {
+  color: #BDBDBD;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.note-card ul { padding-left: 18px; }
+.color-swatches {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.swatch {
+  width: 60px; height: 60px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4px;
+  font-size: 10px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #3E2723;
+    flex-direction: column;
+    gap: 0;
+    padding: 16px 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .nav.open { display: flex; }
+  .nav li { padding: 12px 0; border-bottom: 1px solid #5D4037; }
+  .nav li:last-child { border-bottom: none; }
+  .hero h1 { font-size: 36px; }
+  .hero p { font-size: 16px; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .visit-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .notes-grid { grid-template-columns: 1fr; }
+  .section { padding: 56px 0; }
+  .section-title { font-size: 30px; }
+  .color-swatches { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">Coffee<span>Cafe</span></div>
+    <nav>
+      <button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#visit">Visit Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="container">
+    <h1>Your Daily <em>Cup of Joy</em></h1>
+    <p>Locally roasted coffee, freshly baked pastries, and a warm welcome in the heart of Palmerston North.</p>
+    <a href="#menu" class="hero-btn">Explore Our Menu</a>
+  </div>
+</section>
+
+<!-- ===== FEATURED MENU ===== -->
+<section class="section featured-menu" id="menu">
+  <div class="container">
+    <p class="section-subtitle">Our Favourites</p>
+    <h2 class="section-title">Featured Menu</h2>
+    <div class="divider"></div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-img espresso"><svg viewBox="0 0 24 24" fill="none" stroke="#F5E6D3" stroke-width="1.5"><path d="M17 8h1a4 4 0 010 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg></div>
+        <div class="menu-body">
+          <h3>Signature Espresso</h3>
+          <p>Rich, bold blend with notes of dark chocolate and caramel.</p>
+          <span class="menu-price">$4.50</span>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img latte"><svg viewBox="0 0 24 24" fill="none" stroke="#3E2723" stroke-width="1.5"><path d="M17 8h1a4 4 0 010 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg></div>
+        <div class="menu-body">
+          <h3>Flat White</h3>
+          <p>Smooth velvety microfoam over a double shot of our house blend.</p>
+          <span class="menu-price">$5.00</span>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img croissant"><svg viewBox="0 0 24 24" fill="none" stroke="#8D6E63" stroke-width="1.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+        <div class="menu-body">
+          <h3>Butter Croissant</h3>
+          <p>Freshly baked every morning, golden and flaky.</p>
+          <span class="menu-price">$3.80</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-link">
+      <a href="#menu">View Full Menu &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img">[ Cafe Interior Image ]</div>
+      <div class="about-text">
+        <p class="section-subtitle" style="text-align:left; margin-bottom:12px;">Our Story</p>
+        <h2>A Local Neighbourhood Gem</h2>
+        <p>Coffee Cafe is a locally owned coffee bar nestled in a Palmerston North neighbourhood. We pride ourselves on serving quality coffee in a comfortable, welcoming space.</p>
+        <p>Whether you're catching up with friends, studying for exams, or just need a quiet moment — our doors are always open.</p>
+        <ul class="about-features">
+          <li>Locally roasted coffee beans</li>
+          <li>Freshly baked pastries daily</li>
+          <li>Free Wi-Fi for students &amp; workers</li>
+          <li>Cozy indoor &amp; outdoor seating</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISIT US ===== -->
+<section class="section visit-us" id="visit">
+  <div class="container">
+    <p class="section-subtitle">Find Us</p>
+    <h2 class="section-title">Visit Us</h2>
+    <div class="divider"></div>
+    <div class="visit-grid">
+      <div class="visit-card">
+        <h3>Location &amp; Contact</h3>
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="info-content">
+            <h4>Address</h4>
+            <p>123 Main Street, Palmerston North, New Zealand</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="info-content">
+            <h4>Phone</h4>
+            <p>06 123 4567</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="info-content">
+            <h4>Email</h4>
+            <p>hello@coffeecafe.co.nz</p>
+          </div>
+        </div>
+      </div>
+      <div class="visit-card">
+        <h3>Opening Hours</h3>
+        <table class="hours-table">
+          <tr><td>Monday – Friday</td><td>7:00 AM – 5:00 PM</td></tr>
+          <tr><td>Saturday</td><td>8:00 AM – 4:00 PM</td></tr>
+          <tr><td>Sunday</td><td>8:00 AM – 3:00 PM</td></tr>
+          <tr><td>Public Holidays</td><td>9:00 AM – 2:00 PM</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Coffee<span>Cafe</span></h3>
+        <p>Your neighbourhood coffee bar in Palmerston North. Serving great coffee and good vibes since day one.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#visit">Visit Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">06 123 4567</a></li>
+          <li><a href="#">hello@coffeecafe.co.nz</a></li>
+          <li><a href="#">123 Main Street</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Coffee Cafe. All rights reserved. | Sample Page Layout v1
+    </div>
+  </div>
+</footer>
+
+<!-- ===== DESIGN NOTES (for assignment review) ===== -->
+<section class="notes-panel">
+  <div class="container">
+    <h2>Design Notes — PixelMeister (Han Linyuan)</h2>
+    <div class="notes-grid">
+      <div class="note-card">
+        <h3>Color Scheme</h3>
+        <p>Warm, coffee-inspired palette that evokes comfort and quality.</p>
+        <div class="color-swatches">
+          <div class="swatch" style="background:#3E2723;">#3E2723</div>
+          <div class="swatch" style="background:#D4A574;">#D4A574</div>
+          <div class="swatch" style="background:#F5E6D3; color:#3E2723; text-shadow:none;">#F5E6D3</div>
+          <div class="swatch" style="background:#8D6E63;">#8D6E63</div>
+          <div class="swatch" style="background:#FAF6F0; color:#3E2723; text-shadow:none;">#FAF6F0</div>
+        </div>
+        <ul style="margin-top:12px;">
+          <li>Primary: Deep Coffee #3E2723 — headers, footer, text</li>
+          <li>Accent: Caramel #D4A574 — buttons, highlights, prices</li>
+          <li>Secondary: Warm Cream #F5E6D3 — about bg, cards</li>
+          <li>Background: Cream White #FAF6F0 — page base</li>
+          <li>Muted: #8D6E63 — secondary text</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h3>Font Scheme</h3>
+        <ul>
+          <li><strong>Headings:</strong> Playfair Display (serif) — elegant, warm, artisanal cafe feel. Weights: 400/600/700/900</li>
+          <li><strong>Body:</strong> Lato (sans-serif) — clean, modern, highly readable. Weights: 300/400/700/900</li>
+          <li><strong>Fallback:</strong> Georgia / Times New Roman for serif; Helvetica Neue / Arial for sans</li>
+          <li>Sizes: H1 56px, H2 40px, H3 22-24px, body 14-16px</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h3>Page Layout Type</h3>
+        <p><strong>Jello Design</strong> — centered content with max-width 1100px.</p>
+        <ul>
+          <li>Content stays centered regardless of screen size</li>
+          <li>Consistent reading experience across devices</li>
+          <li>Responsive breakpoints at 768px (stacks to single column)</li>
+          <li>Padding 24px on mobile for comfortable margins</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h3>Accessibility</h3>
+        <ul>
+          <li>High contrast text (dark on light / light on dark)</li>
+          <li>Semantic HTML5 tags (header, nav, section, footer)</li>
+          <li>Descriptive link text (no "click here")</li>
+          <li>Keyboard-navigable navigation</li>
+          <li>Responsive font sizes for readability</li>
+          <li>Alt text placeholders for all images</li>
+          <li>Consistent navigation placement on all pages</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h3>Page Sections</h3>
+        <ul>
+          <li><strong>Header</strong> — logo + sticky navigation (Home/Menu/About/Visit Us/Contact)</li>
+          <li><strong>Hero</strong> — headline, tagline, CTA button, warm gradient bg</li>
+          <li><strong>Featured Menu</strong> — 3-column card grid with images, names, descriptions, prices</li>
+          <li><strong>About</strong> — 2-column: image + story text + feature list</li>
+          <li><strong>Visit Us</strong> — 2 cards: location/contact + opening hours table</li>
+          <li><strong>Footer</strong> — brand, quick links, contact, social, copyright</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h3>Target Audience Fit</h3>
+        <ul>
+          <li>Warm brown/cream palette = cozy, welcoming for 16-40 age group</li>
+          <li>Clear menu &amp; hours = students &amp; workers need quick info</li>
+          <li>Free Wi-Fi mentioned = study-friendly signal</li>
+          <li>Affordable price points shown = matches budget-conscious audience</li>
+          <li>Social links = connects with younger demographic</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+<!-- （注：内容由AI生成） -->
